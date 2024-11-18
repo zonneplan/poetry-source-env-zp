@@ -9,7 +9,8 @@ from poetry.poetry import Poetry
 from poetry.repositories.legacy_repository import LegacyRepository
 from poetry.repositories.repository_pool import Priority
 from poetry.toml.file import TOMLFile
-from pydantic import BaseSettings, validate_arguments
+from pydantic import validate_call
+from pydantic_settings import BaseSettings
 from typing_extensions import Self
 
 
@@ -18,16 +19,10 @@ class PSPConfig(BaseSettings):
     env: bool = True
     toml: bool = True
 
-    @classmethod
-    @validate_arguments(config=dict(arbitrary_types_allowed=True))
-    def load(cls, file: TOMLFile) -> Self:
-        pyproject = file.read()
-        return cls.parse_obj(deep_get(pyproject, "tool.poetry-source-env") or {})
-
 
 class PoetrySourcePlugin(Plugin):
     def activate(self, poetry: Poetry, io: IO = None) -> None:
-        config: PSPConfig = PSPConfig.load(poetry.pyproject.file)
+        config: PSPConfig = PSPConfig()
 
         if config.env:
             repositories = {}
