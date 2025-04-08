@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "poetry-source-env-zp"
-version = "2.0.6"
+version = "2.0.7"
 description = "Load Poetry package sources from environment variables with pydantic > 2"
 authors = ["celsius narhwal <hello@celsiusnarhwal.dev>", "Zonneplan"]
 readme = "README.md"
@@ -9,9 +9,9 @@ homepage = "https://github.com/celsiusnarhwal/poetry-source-env"
 repository = "https://github.com/celsiusnarhwal/poetry-source-env"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = ">=3.8,<4.0"
 dict-deep = "^4.1.2"
-poetry = "^1.5.0"
+poetry = ">=1.5.0"
 pydantic = "^2.0.0"
 pydantic-settings = "^2.6.1"
 
