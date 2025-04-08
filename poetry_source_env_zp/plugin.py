@@ -3,15 +3,11 @@ import re
 from os.path import expandvars
 
 from cleo.io.io import IO
-from dict_deep import deep_get
 from poetry.plugins.plugin import Plugin
 from poetry.poetry import Poetry
 from poetry.repositories.legacy_repository import LegacyRepository
 from poetry.repositories.repository_pool import Priority
-from poetry.toml.file import TOMLFile
-from pydantic import validate_call
 from pydantic_settings import BaseSettings
-from typing_extensions import Self
 
 
 class PSPConfig(BaseSettings):
@@ -44,7 +40,6 @@ class PoetrySourcePlugin(Plugin):
                 )
 
                 priorities = {
-                    "default": Priority.DEFAULT,
                     "primary": Priority.PRIMARY,
                     "supplemental": Priority.SUPPLEMENTAL,
                     "explicit": Priority.EXPLICIT,
